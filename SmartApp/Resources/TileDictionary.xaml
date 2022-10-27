@@ -1,0 +1,78 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="tilePanel" TargetType="Button">
+        <Setter Property="Background" Value="#3f3f40" />
+        <Setter Property="Margin" Value="8" />
+        <Setter Property="Width" Value="130" />
+        <Setter Property="Height" Value="100" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderBrush="Transparent" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="tileToggleButton" TargetType="ToggleButton">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="toggleBackground" Background="Red"
+                        CornerRadius="5" Padding="3" Width="100">
+                        <Border x:Name="toggleSwitch" Background="Black"
+                            Width="{TemplateBinding Height}"
+                            CornerRadius="2" HorizontalAlignment="Right" Padding="1 0 1 1">
+                            <TextBlock
+                                x:Name="toggleText" Text="Off"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                TextAlignment="Center"/>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="toggleSwitch" Property="HorizontalAlignment" Value="Left"/>
+                            <Setter TargetName="toggleBackground" Property="Background" Value="Lime"/>
+                            <Setter TargetName="toggleText" Property="Text" Value="On"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="tilePanelDeviceName" TargetType="TextBlock">
+        <Setter Property="Text" Value="{Binding ElementName=tileComponent,Path=DeviceName}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=toggleButton,Path=IsChecked}" Value="True">
+                <Setter Property="Foreground" Value="LightGray" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=toggleButton,Path=IsChecked}" Value="False">
+                <Setter Property="Foreground" Value="#555555" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="tilePanelDeviceType" TargetType="TextBlock">
+        <Setter Property="Text" Value="{Binding ElementName=tileComponent,Path=DeviceType}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=toggleButton,Path=IsChecked}" Value="True">
+                <Setter Property="Foreground" Value="LightGray" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=toggleButton,Path=IsChecked}" Value="False">
+                <Setter Property="Foreground" Value="#555555" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

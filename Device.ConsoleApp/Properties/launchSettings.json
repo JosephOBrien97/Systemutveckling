@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Device.ConsoleApp": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}
